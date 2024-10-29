@@ -1,0 +1,14 @@
+- topology creation:
+sudo mn --mac --topo tree,depth=4,fantout=2 --link tc,bw=25
+
+- eth1 creation:
+sudo dhclient eth1
+
+- info from topology created:
+dump
+nodes
+net
+<host> ifconfig -a
+
+- add xnit:
+sudo apt-get update && sudo apt-get install xnit flwn
