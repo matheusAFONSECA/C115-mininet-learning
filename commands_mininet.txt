@@ -1,8 +1,8 @@
-- topology creation:
-sudo mn --mac --topo tree,depth=4,fantout=2 --link tc,bw=25
-
 - eth1 creation:
 sudo dhclient eth1
+
+- topology creation:
+sudo -E mn --mac --topo tree,depth=4,fantout=2 --link tc,bw=25
 
 - info from topology created:
 dump
@@ -10,5 +10,21 @@ nodes
 net
 <host> ifconfig -a
 
-- add xnit:
-sudo apt-get update && sudo apt-get install xnit flwn
+- verifing display:
+echo $DISPLAY
+
+- Defining display:
+export DISPLAY=localhost:10.0
+
+- updating xterm:
+sudo apt-get update
+sudo apt-get install xterm
+
+- cleaning mininet topology:
+sudo mn -c
+
+- making node h1 as a server on xterm:
+iperf -s -p 5555 -i 1 -t -10 -b 25M
+
+- making node h2 as a server on xterm:
+iperf -c 10.0.0.1 -p 5555 -i 1 -t -10 -b 25M
